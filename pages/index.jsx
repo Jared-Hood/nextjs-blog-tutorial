@@ -35,7 +35,9 @@ export default function Home({ allPostsData }) {
 }
 
 export async function getStaticProps() {
-  const allPostsData = getSortedPostsData();
+  let allPostsData = getSortedPostsData();
+  // Fix JSON serialization error for date object
+  allPostsData = JSON.parse(JSON.stringify(allPostsData));
   return {
     props: { allPostsData }
   }
