@@ -50,3 +50,8 @@
 .lightText {
   color: #666;
 }
+
+.navbar {
+  display: flex;
+  justify-content: space-evenly;
+}

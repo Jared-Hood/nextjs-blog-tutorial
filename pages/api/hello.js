@@ -1,3 +1,9 @@
+import { getAllPostIds } from "../../util/posts";
+
 export default function handler(req, res) {
-  res.status(200).json({ text: 'Hello' });
+  const postIds = getAllPostIds();
+  res.status(200).json({
+    text: 'Hello',
+    postIds: postIds
+  });
 }

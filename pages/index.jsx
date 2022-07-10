@@ -18,7 +18,7 @@ export default function Home({ allPostsData }) {
   }
 
   return (
-    <Layout home>
+    <Layout home={true}>
       <Head>
         <title>{siteTitle}</title>
       </Head>
@@ -27,6 +27,14 @@ export default function Home({ allPostsData }) {
       />
       <section className={utilStyles.headingMd}>
         <p className='text-blue-600'>Hi, I'm Jared</p>
+      </section>
+      <section className={utilStyles.navbar}>
+        <Link href="/todo">
+          <a>Todo</a>
+        </Link>
+        <Link href="/map">
+          <a>Map</a>
+        </Link>
       </section>
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <h2 className={utilStyles.headingLg}>Blog</h2>
