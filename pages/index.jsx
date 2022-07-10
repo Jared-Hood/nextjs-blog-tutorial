@@ -16,11 +16,15 @@ export default function Home({ allPostsData }) {
       }
     })
   }
+
   return (
     <Layout home>
       <Head>
         <title>{siteTitle}</title>
       </Head>
+      <Script 
+        src="https://identity.netlify.com/v1/netlify-identity-widget.js"
+      />
       <section className={utilStyles.headingMd}>
         <p className='text-blue-600'>Hi, I'm Jared</p>
       </section>
