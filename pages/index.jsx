@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import Script from 'next/script';
 import Layout, { siteTitle } from '../components/layout';
 import utilStyles from '../styles/utils.module.css';
 import { getSortedPostsData } from '../util/posts';
@@ -6,6 +7,15 @@ import Link from 'next/link';
 import Date from '../components/date';
 
 export default function Home({ allPostsData }) {
+  if (typeof window !== "undefined" && window.netlifyIdentity) {
+    window.netlifyIdentity.on("init", user => {
+      if (!user) {
+        window.netlifyIdentity.on("login", () => {
+          document.location.href = "/admin/";
+        });
+      }
+    })
+  }
   return (
     <Layout home>
       <Head>
