@@ -5,8 +5,24 @@ import utilStyles from '../styles/utils.module.css';
 import { getSortedPostsData } from '../util/posts';
 import Link from 'next/link';
 import Date from '../components/date';
+import { useSession, signIn, signOut } from 'next-auth/react';
 
 export default function Home({ allPostsData }) {
+  const { data: session } = useSession()
+  if (session) {
+    return (
+      <>
+        Signed in as {session.user.email} <br />
+        <button onClick={() => signOut()}>Sign out</button>
+      </>
+    )
+  }
+  return (
+    <>
+      Not signed in <br />
+      <button onClick={() => signIn()}>Sign in</button>
+    </>
+  )
   if (typeof window !== "undefined" && window.netlifyIdentity) {
     window.netlifyIdentity.on("init", user => {
       if (!user) {

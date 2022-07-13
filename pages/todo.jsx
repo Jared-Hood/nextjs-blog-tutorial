@@ -1,3 +1,4 @@
+import Head from "next/head"
 import Layout from "../components/layout"
 import Todo from "../components/todo"
 
@@ -19,6 +20,9 @@ const items = [
 export default function About() {
   return (
     <Layout>
+      <Head>
+        <title>Todo</title>
+      </Head>
       <h1>
         Todo
       </h1>
