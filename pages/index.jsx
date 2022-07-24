@@ -8,21 +8,6 @@ import Date from '../components/date';
 import { useSession, signIn, signOut } from 'next-auth/react';
 
 export default function Home({ allPostsData }) {
-  const { data: session } = useSession()
-  if (session) {
-    return (
-      <>
-        Signed in as {session.user.email} <br />
-        <button onClick={() => signOut()}>Sign out</button>
-      </>
-    )
-  }
-  return (
-    <>
-      Not signed in <br />
-      <button onClick={() => signIn()}>Sign in</button>
-    </>
-  )
   if (typeof window !== "undefined" && window.netlifyIdentity) {
     window.netlifyIdentity.on("init", user => {
       if (!user) {
@@ -32,6 +17,8 @@ export default function Home({ allPostsData }) {
       }
     })
   }
+
+  const { data: session } = useSession();
 
   return (
     <Layout home={true}>
@@ -51,6 +38,11 @@ export default function Home({ allPostsData }) {
         <Link href="/map">
           <a>Map</a>
         </Link>
+        {session && <>
+          <Link href="/dashboard">
+            <a>Dashboard</a>
+          </Link>
+        </>}
       </section>
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <h2 className={utilStyles.headingLg}>Blog</h2>
